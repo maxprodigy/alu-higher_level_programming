@@ -1,43 +1,50 @@
 #!/usr/bin/python3
-"Defines a square"
+'''Defines a Square class'''
 
 
 class Square:
+    '''Square represents an instance of a square shape'''
 
-    "Initialization"
     def __init__(self, size=0):
-        if type(size) is not int:
-            raise TypeError("size must be an integer")
-        elif size < 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = size
+        '''Initializes a new square object
 
-    "property"
-    @property
-    def size(self):
-    return self.__size
+           Args:
+                size (int): The size of the square.
+        '''
+        self.size = size
 
-    "size setting"
-    @size.setter
-    def size(self, value):
-        if type(value) is not int:
-            raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
-
-    "Area"
     def area(self):
+        '''
+           Computes the area of the square based on the size.
+
+           Returns:
+               The value of the area (int).
+        '''
         return self.__size ** 2
 
-    "print"
+    @property
+    def size(self):
+        '''
+           Retrieves the value of size
+        '''
+        return (self.__size)
+
+    @size.setter
+    def size(self, value):
+        '''
+           Sets the value of private attribute size
+        '''
+        if (type(value) != int):
+            raise TypeError("size must be an integer")
+        if (value < 0):
+            raise ValueError("size must be >= 0")
+        self.__size = value
+
     def my_print(self):
-        if self.__size == 0:
-            print()
-        else:
-            for i in range(0, self.__size):
-                for j in range(0, self.__size):
-                    print("#", end="")
-                print()
+        '''
+           Prints graphic representaion of square instance
+        '''
+        for i in range(self.size):
+            print("#" * self.size)
+        if self.size == 0:
+            print("")
