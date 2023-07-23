@@ -5,6 +5,7 @@ class Square:
     """ class square defines a square by size:
     size must be an integer
     size must not be negative """
+
     def __init__(self, size=0):
         """ initialize square objects,
         sets size equal to 0 by default,
@@ -36,19 +37,25 @@ class Square:
         return self.__size ** 2
 
     def __lt__(self, other):
+        """ returns self """
         return self.area() < other.area()
 
     def __le__(self, other):
+        """ returns self """
         return self.area() <= other.area()
 
     def __eq__(self, other):
+        """ returns self """
         return self.area() == other.area()
 
     def __ne__(self, other):
+        """ returns self """
         return self.area() != other.area()
 
     def __gt__(self, other):
+        """ returns self """
         return self.area() > other.area()
 
     def __ge__(self, other):
+        """ returns self """
         return self.area() >= other.area()

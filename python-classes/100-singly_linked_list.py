@@ -1,67 +1,107 @@
 #!/usr/bin/python3
-"Defines a Node Class"
+'''
+Defines a new class called Node
+'''
+
 
 class Node:
+    '''
+    Node serves as a singly linked list
+    '''
+
     def __init__(self, data, next_node=None):
-        if type(data) is not int:
-            raise TypeError("data must be an integer")
-        elif next_node is not None and type(next_node) is not Node:
-            raise TypeError("next_node must be a Node object")
-        else:
-            self.__data = data
-            self.__next_node = next_node
+        '''
+        Initializes new data
+        '''
+        self.data = data
+        self.next_node = next_node
 
     @property
     def data(self):
+        '''
+        Retrieves the value of data
+
+        Return:
+           The current value of instance data (int).
+        '''
         return self.__data
 
     @data.setter
     def data(self, value):
-        if type(value) is not int:
-            raise TypeError("data must be an integer")
-        else:
+        '''
+        Checks and sets the value of data
+
+        Args:
+           value (int): The integer to be saved into data
+        '''
+        if (type(value) == int):
             self.__data = value
+        else:
+            raise TypeError("data must be an integer")
 
     @property
     def next_node(self):
+        '''
+        Retrieves the value of next_node
+
+        Returns:
+           The current value of next_node
+        '''
         return self.__next_node
 
     @next_node.setter
     def next_node(self, value):
-        if value is not None and type(value) is not Node:
-            raise TypeError("next_node must be a Node object")
-        else:
+        '''
+        Checks and sets the value of next_node.
+
+        Args:
+          value (Node): New value to be set.
+        '''
+        if (type(value) == Node or value is None):
             self.__next_node = value
+        else:
+            raise TypeError("next_node must be a Node object")
 
 
 class SinglyLinkedList:
+    '''
+    A class to manage singly linked list operations
+    '''
     def __init__(self):
+        '''
+        Initializes data into the new singly linked list
+        '''
         self.__head = None
 
-    def sorted_insert(self, value):
-        node = Node(value)
-        if self.__head is None:
-            self.__head = node
-        else:
-            tmp = self.__head
-            if node.data < tmp.data or \
-                    (node.data == tmp.data and node.data < tmp.next_node.data):
-                node.next_node = tmp
-                self.__head = node
-            else:
-                prev = tmp
-                while tmp is not None and tmp.data < value:
-                    prev = tmp
-                    tmp = tmp.next_node
-                node.next_node = tmp
-                prev.next_node = node
-
     def __str__(self):
-        ch = ""
-        tmp = self.__head
-        while tmp is not None:
-            ch += str(tmp.data)
-            ch += "\n"
-            tmp = tmp.next_node
-        ch = ch[:-1]
-        return ch
+        '''
+        Prints all the memebers of the singly linked list on a separate line
+        '''
+        res = []
+        ptr = self.__head
+        while (ptr):
+            res.append(str(ptr.data))
+            ptr = ptr.next_node
+        return ("\n".join(res))
+
+    def sorted_insert(self, value):
+        '''
+        inserts a new Node into the correct sorted position in the
+        list (increasing order)
+
+        Args:
+           value (int): New data to be inserted into list
+        '''
+        if not isinstance(value, int):
+            raise TypeError("Value has to be an int")
+        if self.__head is None:
+            self.__head = Node(value)
+        elif self.__head.data > value:
+            new = Node(value, self.__head)
+            self.__head = new
+        else:
+            ptr = self.__head
+            while (ptr.next_node is not None and ptr.next_node.data < value):
+                ptr = ptr.next_node
+            new = Node(value, ptr.next_node)
+            ptr.next_node = new
