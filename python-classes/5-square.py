@@ -16,8 +16,8 @@ class Square:
     "property"
     @property
     def size(self):
-        return self.__size    
-    
+    return self.__size
+
     "size setting"
     @size.setter
     def size(self, value):
@@ -27,11 +27,11 @@ class Square:
             raise ValueError("size must be >= 0")
         else:
             self.__size = value
-    
+
     "Area"
     def area(self):
         return self.__size ** 2
-    
+
     "print"
     def my_print(self):
         if self.__size == 0:
