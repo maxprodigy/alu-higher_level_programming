@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"Defines a square"
+
 class Square:
     def __init__(self, size=0, position=(0, 0)):
         if ((type(position) is not tuple) or (len(position) != 2)) \

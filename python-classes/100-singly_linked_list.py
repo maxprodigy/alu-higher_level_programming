@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"Defines a Node Class"
+
 class Node:
     def __init__(self, data, next_node=None):
         if type(data) is not int:
