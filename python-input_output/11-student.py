@@ -20,3 +20,9 @@ class Student:
             return {key: self.__dict__[key]
                     for key in self.__dict__.keys() if key in attrs}
         return self.__dict__
+
+    def reload_from_json(self, json):
+        '''Replaces all attributes of a student instance
+        '''
+        for k, v in json.items():
+            setattr(self, k, v)_
