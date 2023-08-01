@@ -1,2 +1,3 @@
--- a script that creates the database hbtn_0c_0 in the MySQL server
-CREATE DATABASE IF NOT EXISTS hbtn_0c_0;
+-- Creates user user_0d_1 with password user_0d_1_pwd
+CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
